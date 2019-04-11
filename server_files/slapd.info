@@ -1,0 +1,8 @@
+cn = "ExampleCo LDAP"
+dns_name = ldap01.loc.example.com
+dns_name = ldap02.loc.example.com
+dns_name = ldap03.loc.example.com
+tls_www_server
+encryption_key
+signing_key
+expiration_days = 3650

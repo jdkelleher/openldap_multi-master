@@ -1,0 +1,58 @@
+
+List of References and Resources Used
+
+	OpenLDAP Server
+	https://help.ubuntu.com/lts/serverguide/openldap-server.html.en
+
+	OpenLDAPServer
+	https://help.ubuntu.com/community/OpenLDAPServer
+
+	Configuring OpenLDAP Multi Master Replication on Ubuntu 16.04
+	https://iambenjaminlong.com/2017/04/21/configuring-openldap-multi-master-replication-on-ubuntu-16-04/
+
+	Security Considerations
+	https://www.openldap.org/doc/admin23/security.html
+
+	LDAP setup script which does TLS setup and basic hardening.
+	https://gist.github.com/phieber/7f97e480399b0da5602f00b7eaf1e3d6
+
+	[HowTo] Install OpenLDAP 2.4+ with TLS support
+	http://www.cyrill-gremaud.ch/howto-install-openldap-2-4-server/
+
+	[HowTo] Setup N-Way Multi-Master replication with OpenLDAP
+	http://www.cyrill-gremaud.ch/howto-setup-n-way-multi-master-replication-with-openldap/
+
+	Centralized authentication using OpenLDAP - Replication
+	https://wiki.gentoo.org/wiki/Centralized_authentication_using_OpenLDAP#Replication
+
+	Configure LDAP Client on Ubuntu 16.04 / Debian 8
+	https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/configure-ldap-client-on-ubuntu-16-04-debian-8.html
+
+	Re: Unable to edit cn=config
+	https://www.openldap.org/lists/openldap-technical/201306/msg00220.html
+
+	Setting up nss-ldapd on Ubuntu 14.04
+	https://blog.shichao.io/2015/05/21/setup_nss_ldapd_on_ubuntu_14_04.html
+
+	NSS Setup with libnss-ldapd
+	https://wiki.debian.org/LDAP/NSS#NSS_Setup_with_libnss-ldapd
+
+	Notes on LDAP server setup and client authentication
+	https://medium.com/@griggheo/notes-on-ldap-server-setup-and-client-authentication-546f51cbd6f4
+
+	Setting up OpenLDAP for centralized accounts
+	https://eatingsecurity.blogspot.com/2008/09/setting-up-openldap-for-centralized.html
+
+	Add a proxy agent
+	https://wikitech.wikimedia.org/wiki/LDAP#Add_a_proxy_agent
+
+	How To Change Account Passwords on an OpenLDAP Server
+	https://www.digitalocean.com/community/tutorials/how-to-change-account-passwords-on-an-openldap-server
+
+	Passwords Using LDIF
+	https://ldapwiki.com/wiki/Passwords%20Using%20LDIF
+
+	LDAP and password encryption strength
+	https://www.redpill-linpro.com/techblog/2016/08/16/ldap-password-hash.html
+
+

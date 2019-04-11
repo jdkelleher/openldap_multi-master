@@ -1,0 +1,56 @@
+# ***
+# https://github.com/jdkelleher/openldap_multi-master
+#
+# This file will be sourced by the ldap config scripts to set needed environment variables.
+# ***
+
+
+
+# List of masters to configure; do not use FQDN since domain will be appended as needed
+export LDAP_MASTERS=(
+	'ldap01'
+	'ldap02'
+	'ldap03'
+)
+
+export DOMAIN='loc.example.com'			# Domain will be used to generate FQDNs and DCs
+export ORGANIZATION='ExampleCo'			# Will set Organization during install, e.g. "Example Co"
+
+export LDAP_ADMIN='admin'			# *This shouldn't be changed* - must match account setup by the package install
+export LDAP_ADMIN_PASSWORD='TheAdminPass'	# Admin password for the database, e.g. dc=admin,dc=example,dc=com
+
+export LDAP_READER=ldapreader			# Reader account for syncrepl, will be permissioned to config and data db
+export LDAP_READER_PASSWORD='TheReaderPass'	# Credentials will be stored plain-text, so not using admin for security
+
+export BIND_ACCOUNT='binduser'			# Account for client binds
+export BIND_ACCOUNT_PASSWORD='TheBindPass'	# Credentials will be stored plain-text and readable by all, so never use admin
+
+
+export SLAPD_BE='MDB'				# Specify Openldap backend db, e.g. BDB, HDB, or MDB.  MDB recommended
+
+export KEEP_TEMP_FILES=0			# 0 == False, 1 == True ; If true, temp files will not be deleted.
+export TEMP_DIR='/tmp/'				# Directory for temporary files
+
+
+
+
+
+### DO NOT EDIT (unless you understand what's going on here) ###
+#
+# These calcualted values are used across several scripts
+#
+
+export FILE_BASE=${SCRIPT_BASE}/server_files/
+
+export DCNAME=`echo $DOMAIN | sed -e 's@^\(.*\)@dc=\1@g;' -e 's@\.@,dc=@g;'`
+
+export LDAPDB=`echo "${SLAPD_BE}" | tr '[:upper:]' '[:lower:]'`			# Lowercase for ldif entries
+
+
+export LDAP_URI_LIST=""
+for i in ${!LDAP_MASTERS[@]}; do
+	R=$(( $i + 1 ))
+	M=${LDAP_MASTERS[$i]}
+	LDAP_URI_LIST="${LDAP_URI_LIST}ldap://${M}.${DOMAIN} "
+done
+
