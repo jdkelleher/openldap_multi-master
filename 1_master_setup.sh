@@ -216,9 +216,9 @@ disallow_bind_anon() {
 
 # add_config_olcRootPW
 #
-# not set on ubuntu - only needed for priviledged remote access to config
+# Not set on ubuntu - only needed for priviledged remote access to config
 #
-# *** May not need this with LDAP_READER ***
+# *** No longer needed here since LDAP_READER was added ***
 #
 add_config_olcRootPW() {
 	echo "Running ${FUNCNAME[0]}..."
@@ -281,14 +281,11 @@ add_ldap_reader_acl() {
 	olcAccess: {0}to attrs=userPassword by self write by dn="cn=${LDAP_READER},${DCNAME}" read by anonymous auth by * none
 	EOInp
 	if [ $? -ne 0 ] ; then echo "Error executing ${FUNCNAME[0]}..." ; exit 1 ; fi
+	# Should result in following olcAccess entries on dn: olcDatabase={1}${LDAPDB},cn=config
+	#  olcAccess: {0}to attrs=userPassword by self write by dn="cn=${LDAP_READER},${DCNAME}" read by anonymous auth by * none
+	#  olcAccess: {1}to attrs=shadowLastChange by self write by * read
+	#  olcAccess: {2}to * by * read
 }
-#	olcAccess: {1}to attrs=shadowLastChange by self write by * read
-#	olcAccess: {2}to * by * read
-#
-#	dn: olcDatabase={1}${LDAPDB},cn=config
-#	changetype: modify
-#	add: olcAccess
-#	olcAccess: {0}to * by dn="cn=${LDAP_READER},${DCNAME}" read
 
 
 # load_modules
@@ -420,6 +417,19 @@ add_config_SyncRepl() {
 }
 
 
+# setup_daily_backup
+#
+# Install and configure daily backups
+#
+setup_daily_backup() {
+	echo "Running ${FUNCNAME[0]}..."
+	# ldap-git-backup handles everything nicely
+	apt -y install ldap-git-backup
+	if [ $? -ne 0 ] ; then echo "Error executing ${FUNCNAME[0]}..." ; exit 1 ; fi
+}
+
+
+
 # main...
 
 pkg_install
@@ -427,7 +437,7 @@ add_indexes
 config_tls
 add_bind_account
 disallow_bind_anon
-#add_config_olcRootPW	# may not be needed
+#add_config_olcRootPW	# not be needed since LDAP_READER is being used for replication
 add_ldap_reader
 add_ldap_reader_acl
 load_modules
@@ -435,6 +445,7 @@ set_olcServerID
 update_olcServerID_URI
 add_syncprov_overlay
 add_config_SyncRepl
+setup_daily_backup
 
 echo "Executing final restart..."
 sudo systemctl restart slapd.service
