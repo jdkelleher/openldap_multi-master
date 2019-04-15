@@ -8,7 +8,7 @@
 - [ ] Better error checking
 - [ ] Better post-install validation
 - [ ] References should be .dm instead of .txt
-- [ ] 
+- [ ] ...
 
 
 ## Stuff to think about and/or prioritize
