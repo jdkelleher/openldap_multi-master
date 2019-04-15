@@ -7,6 +7,8 @@
 - [ ] Clean up cert creation function -- too much hard-coding
 - [ ] Better error checking
 - [ ] Better post-install validation
+- [ ] References should be .dm instead of .txt
+- [ ] 
 
 
 ## Stuff to think about and/or prioritize
