@@ -7,7 +7,7 @@
 - [ ] Clean up cert creation function -- too much hard-coding
 - [ ] Better error checking
 - [ ] Better post-install validation
-- [ ] References should be .dm instead of .txt
+- [ ] References should be .md instead of .txt
 - [ ] ...
 
 
